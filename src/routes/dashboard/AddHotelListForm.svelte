@@ -6,7 +6,7 @@
 
 </script>
 
-<form class="box" action="/dashboard/addhotellist" method="POST">
+<form class="box" action="?/addHotelList" method="POST">
     <div class="field is-horizontal">
       <div class="field-body">
         <div class="field">

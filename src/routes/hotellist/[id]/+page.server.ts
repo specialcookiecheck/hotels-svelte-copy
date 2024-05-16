@@ -1,5 +1,6 @@
-//import { hotelService } from "$lib/services/hotel-service";
+import { hotelService } from "$lib/services/hotel-service";
 import { hotelListService } from "$lib/services/hotelList-service";
+import type { Session } from "$lib/types/hotel-types";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ params, parent }) => {
@@ -12,4 +13,28 @@ export const load: PageServerLoad = async ({ params, parent }) => {
             hotels: await hotelListService.getHotelListHotels(session, params.id),
         };
     }
+}
+
+export const actions = {
+    addHotel: async ({ request, cookies }) => {
+        console.log("addHotel action started");
+        const cookieStr = cookies.get("hotel-user") as string;
+        if (cookieStr) {
+          const session = JSON.parse(cookieStr) as Session;
+          if (session) {
+            const form = await request.formData();
+            const hotelListId = form.get("hotelListId") as string;
+            const hotel = {
+              name: form.get("name") as string,
+              city: form.get("city") as string,
+              country: form.get("country") as string,
+              latitude: form.get("latitude") as string,
+              longitude: form.get("longitude") as string,
+            }
+            hotelService.addHotel(session, hotelListId, hotel);
+          }
+        } else {
+          console.log("no session cookie");
+        }
+      }
 }

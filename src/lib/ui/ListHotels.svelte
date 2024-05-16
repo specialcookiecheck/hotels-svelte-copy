@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { HotelList, Hotel } from "$lib/types/hotel-types";
+    import type { Hotel } from "$lib/types/hotel-types";
 
     export let hotels: Hotel[];
 </script>
@@ -76,7 +76,7 @@
         {#each hotels as hotel}
           <tr>
             <td>
-              <a href={hotel.imageURL} target="_blank">{name}</a>
+              <a href={hotel.imageURL} target="_blank">{hotel.name}</a>
             </td>
             <td>
               {hotel.city}

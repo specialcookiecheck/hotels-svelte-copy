@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Session, HotelList, Hotel} from "$lib/types/hotel-types";
+import type { Session, HotelList, Hotel, AddedHotelList} from "$lib/types/hotel-types";
 
 export const hotelListService = {
   baseUrl: "http://localhost:3000", // Live Render URL: "http://hotels-copy.onrender.com" localhost UIRL: "http://localhost:3000"
@@ -36,6 +36,19 @@ export const hotelListService = {
     } catch (error) {
       console.log(error);
       return [];
+    }
+  },
+
+  async addHotelList(session: Session, hotelList: AddedHotelList) {
+    try {
+      console.log("addHotelList started");
+      axios.defaults.headers.common["Authorization"] = "Bearer " + session.token;
+      const response = await axios.post(this.baseUrl + "/api/hotellists", hotelList);
+      console.log("hotelList added:", response.data)
+      return response.status == 200;
+    } catch (error) {
+      console.log(error.message);
+      return false;
     }
   },
 }

@@ -16,14 +16,19 @@ export interface HotelList {
   _id: string;
   title: string;
 }
+
+export interface AddedHotelList {
+  email: string;
+  title: string;
+}
   
 export interface Hotel {
 _id: string;
-hotelListId: string;
+hotelListid: string;
 city: string;
 country: string;
 houseNumber: string;
-imageUrl: string;
+imageURL: string;
 latitude: number;
 longitude: number;
 name: string;
@@ -35,3 +40,11 @@ lng: number;
 //candidate: Candidate | string;
 //donor: User | string;
 }
+
+export interface AddedHotel {
+  name: string;
+  city: string;
+  country: string;
+  latitude: string;
+  longitude: string;
+  }
