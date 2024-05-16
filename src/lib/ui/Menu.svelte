@@ -6,9 +6,11 @@
     //import type { User, HotelList, Hotel } from "$lib/types/hotel-types";
     import HotelBrand from "./HotelBrand.svelte";
 
-    let user;
+    
+    //let user = hotelService.getUser(currentSession);
     let admin = false;
 
+    /*
     onMount(async () => {
         user = await hotelService.getUser(currentSession._id);
         if (user.adminAccount) {
@@ -19,8 +21,30 @@
         //hotelLists = await hotelService.getHotelLists(get(currentSession));
         //hotels = await hotelService.getHotels(get(currentSession));
     });
+    */
 </script>
 
+
+<nav class="navbar">
+  <div class="navbar-brand">
+    <HotelBrand />
+  </div>
+  <div class="navbar-menu" id="navMenu">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
+          <a id="about" class="button" href="/about"> About </a>
+          <a id="account" class="button" href="/account/{$currentSession._id}"> Account</a>
+          <a data-sveltekit-preload-data="tap" id="logout" class="button" href="/logout"> Logout {$currentSession.name} </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!--
 
 <nav class="navbar">
     <div class="navbar-brand">
@@ -37,13 +61,15 @@
             {/if}
             <a id="about" class="button" href="/about"> About </a>
             {#if admin}
-            <a id="logout" class="button" href="/logout"> Logout [{$currentSession.name}] </a>
+            <a data-sveltekit-preload-data="tap" id="logout" class="button" href="/logout"> Logout [{$currentSession.name}] </a>
             {:else}
-            <!-- <a id="account" class="button" href="/account/{user._id}"> Account</a> -->
-            <a id="logout" class="button" href="/logout"> Logout [{$currentSession.name}] </a>
+            <a id="account" class="button" href="/account/{user._id}"> Account</a>
+            <a data-sveltekit-preload-data="tap" id="logout" class="button" href="/logout"> Logout [{$currentSession.name}] </a>
             {/if}
           </div>
         </div>
       </div>
     </div>
   </nav>
+
+-->

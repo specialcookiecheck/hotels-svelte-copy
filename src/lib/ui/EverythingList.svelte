@@ -4,8 +4,18 @@
     export let users: User[];
     export let hotelLists: HotelList[];
     export let hotels: Hotel[];
+    export let user: User;
 
 </script>
+
+
+<h1>User: {user}</h1>
+
+<h1>User: {user.firstName}</h1>
+<h1>User: {user.lastName}</h1>
+<h1>User: {user.email}</h1>
+<h1>User: {user.password}</h1>
+<h1>User: {user._id}</h1>
 
 
 
