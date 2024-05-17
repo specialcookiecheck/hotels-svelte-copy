@@ -103,4 +103,4 @@
   
   </table>
 
-  <!--<HotelsMap hotels={hotels} />-->
+  <HotelsMap hotels={hotels} height={60} />

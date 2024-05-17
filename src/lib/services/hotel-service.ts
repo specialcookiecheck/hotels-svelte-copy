@@ -9,6 +9,8 @@ export const hotelService = {
     try {
       axios.defaults.headers.common["Authorization"] = "Bearer " + session.token;
       const response = await axios.get(this.baseUrl + "/api/hotels");
+      console.log("hotelService getHotels finished, returning data");
+      //console.log(response.data);
       return response.data;
     } catch (error) {
       return [];
