@@ -1,5 +1,7 @@
 <script lang="ts">
     import type { HotelList } from "$lib/types/hotel-types";
+    import DeleteHotelListForm from "../../routes/dashboard/DeleteHotelListForm.svelte";
+    import HotelsMap from "../../routes/dashboard/HotelsMap.svelte";
 
     export let hotelLists: HotelList[];
 </script>
@@ -54,9 +56,7 @@
           <i class="fas fa-folder-open"></i>
         </span>
       </a>
-      <a href="/dashboard/deletehotellist/{hotelList._id}" class="button">
-        <i class="fas fa-trash"></i>
-      </a>
+      <DeleteHotelListForm hotelList={hotelList} />
   <!--{/unless}-->
   
   
@@ -74,7 +74,7 @@
       <br>
     </div>
     <div>
-      <!--{> hotels-map}-->
+      <!--<HotelsMap />-->
     </div>
   </section>
 

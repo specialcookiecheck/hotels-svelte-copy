@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ parent }) => {
         users: await userService.getUsers(session),
         hotelLists: await hotelListService.getHotelLists(session),
         hotels: await hotelService.getHotels(session),
-        user: await userService.getUser(session, session._id)
+        user: await userService.getUser(session, session._id),
     };
   }
 };
@@ -30,6 +30,21 @@ export const actions = {
           email: form.get("email") as string,
         }
         hotelListService.addHotelList(session, hotelList);
+      }
+    } else {
+      console.log("no session cookie");
+    }
+  },
+
+  deleteHotelList: async ({ request, cookies }) => {
+    console.log("deleteHotelList action started");
+    const cookieStr = cookies.get("hotel-user") as string;
+    if (cookieStr) {
+      const session = JSON.parse(cookieStr) as Session;
+      if (session) {
+        const form = await request.formData();
+        const hotelListId = form.get("hotelListId") as string;
+        hotelListService.deleteHotelList(session, hotelListId);
       }
     } else {
       console.log("no session cookie");

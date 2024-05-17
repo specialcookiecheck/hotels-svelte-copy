@@ -44,12 +44,12 @@ export const hotelService = {
 
   async deleteHotel(session: Session, hotelId: string) {
     try {
-      console.log("hotelService addHotel started");
+      console.log("hotelService deleteHotel started");
       axios.defaults.headers.common["Authorization"] = "Bearer " + session.token;
       const deletedUrl = `/api/hotels/${hotelId}`;
       console.log("deletedUrl:", deletedUrl);
-      const response = await axios.post(this.baseUrl + deletedUrl);
-      console.log("hotel added:", response.data)
+      const response = await axios.delete(this.baseUrl + deletedUrl);
+      console.log(`hotel ${hotelId} deleted`);
       return response.status == 200;
     } catch (error) {
       console.log(error.message);

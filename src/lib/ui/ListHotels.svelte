@@ -1,5 +1,8 @@
 <script lang="ts">
     import type { Hotel } from "$lib/types/hotel-types";
+    import { hotelService } from "$lib/services/hotel-service";
+    import DeleteHotelForm from "../../routes/hotellist/[id]/DeleteHotelForm.svelte";
+    import HotelsMap from "../../routes/dashboard/HotelsMap.svelte";
 
     export let hotels: Hotel[];
 </script>
@@ -88,6 +91,10 @@
               <a href="/hotellist/{hotel.hotelListid}/deletehotel/{hotel._id}" class="ui icon button">
                 <i class="fas fa-trash"></i>
               </a>
+            </td>
+            <td>
+              <DeleteHotelForm hotel={hotel} />
+            </td>
           </tr>
         {/each}
   
@@ -95,3 +102,5 @@
       <!--{/unless}-->
   
   </table>
+
+  <!--<HotelsMap hotels={hotels} />-->

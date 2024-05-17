@@ -51,4 +51,19 @@ export const hotelListService = {
       return false;
     }
   },
+
+  async deleteHotelList(session: Session, hotelListId: string) {
+    try {
+      console.log("hotelListService deleteHotelList started");
+      axios.defaults.headers.common["Authorization"] = "Bearer " + session.token;
+      const deletedUrl = `/api/hotellists/${hotelListId}`;
+      console.log("deletedUrl:", deletedUrl);
+      const response = await axios.delete(this.baseUrl + deletedUrl);
+      console.log(`hotelList ${hotelListId} deleted`);
+      return response.status == 200;
+    } catch (error) {
+      console.log(error.message);
+      return false;
+    }
+  },
 }
