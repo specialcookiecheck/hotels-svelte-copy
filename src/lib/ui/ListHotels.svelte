@@ -1,10 +1,11 @@
 <script lang="ts">
-    import type { Hotel } from "$lib/types/hotel-types";
+    import type { Hotel, HotelList } from "$lib/types/hotel-types";
     import { hotelService } from "$lib/services/hotel-service";
     import DeleteHotelForm from "../../routes/hotellist/[id]/DeleteHotelForm.svelte";
     import HotelsMap from "../../routes/dashboard/HotelsMap.svelte";
 
     export let hotels: Hotel[];
+    export let hotelList: HotelList;
 </script>
 
 <table class="table is-fullwidth">
@@ -88,6 +89,13 @@
               {hotel.country}
             </td>
             <td>
+              <a href="/hotel/{hotel._id}" class="button">
+                <span class="icon is-small">
+                  <i class="fas fa-folder-open"></i>
+                </span>
+              </a>
+            </td>
+            <td>
               <a href="/hotellist/{hotel.hotelListid}/deletehotel/{hotel._id}" class="ui icon button">
                 <i class="fas fa-trash"></i>
               </a>
@@ -103,4 +111,4 @@
   
   </table>
 
-  <HotelsMap hotels={hotels} height={60} />
+  <!--<HotelsMap hotels={hotels} height={60} /> -->

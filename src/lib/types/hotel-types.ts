@@ -54,3 +54,8 @@ export interface AddedHotel {
   starRating: string;
   reviewRating: string;
   }
+
+export interface HotelImage {
+  imageUrl: string;
+  hotelId: string;
+}

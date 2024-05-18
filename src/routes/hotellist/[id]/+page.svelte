@@ -15,7 +15,7 @@
       {data.hotelList.title}
     </div>
 
-    <ListHotels hotels={data.hotels}/>
+    <ListHotels hotels={data.hotels} hotelList={data.hotelList}/>
 
     <AddHotelForm hotelList={data.hotelList}/>
     <!--

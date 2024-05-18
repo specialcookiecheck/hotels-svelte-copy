@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Session, Hotel, AddedHotel } from "$lib/types/hotel-types";
+import type { Session, Hotel, AddedHotel, HotelImage } from "$lib/types/hotel-types";
 
 
 export const hotelService = {
@@ -21,10 +21,12 @@ export const hotelService = {
   },
 
   async getHotel(session: Session, id: string): Promise<Hotel> {
-    console.log("hotelService getHotels started");
+    console.log("hotelService getHotel started");
     try {
       axios.defaults.headers.common["Authorization"] = "Bearer " + session.token;
-      const response = await axios.get(this.baseUrl + "/api/hotels" + id);
+      const response = await axios.get(this.baseUrl + "/api/hotels/" + id);
+      console.log(response.data);
+      console.log("hotelService getHotel completed, returning response data");
       return response.data;
     } catch (error) {
       return null;
@@ -40,6 +42,22 @@ export const hotelService = {
       console.log("hotel", hotel);
       const response = await axios.post(this.baseUrl + toBeAddedUrl, hotel);
       console.log("hotel added:", response.data)
+      return response.status == 200;
+    } catch (error) {
+      console.log(error.message);
+      return false;
+    }
+  },
+
+  async addHotelImage(session: Session, hotelImage: string, hotelId: string) {
+    try {
+      console.log("hotelService addHotelImage started");
+      axios.defaults.headers.common["Authorization"] = "Bearer " + session.token;
+      const toBeAddedUrl = `/api/hotels/${hotelId}/addImage`;
+      console.log("toBeAddedUrl:", toBeAddedUrl);
+      console.log("hotelId", hotelId);
+      const response = await axios.post(this.baseUrl + toBeAddedUrl, hotelImage);
+      console.log("hotelImage added:", response.data)
       return response.status == 200;
     } catch (error) {
       console.log(error.message);
