@@ -1,6 +1,7 @@
 import axios from "axios";
 import type { Session, Hotel, AddedHotel } from "$lib/types/hotel-types";
 
+
 export const hotelService = {
   baseUrl: "http://localhost:3000", // Live Render URL: "http://hotels-copy.onrender.com" localhost UIRL: "http://localhost:3000"
 
@@ -11,7 +12,9 @@ export const hotelService = {
       const response = await axios.get(this.baseUrl + "/api/hotels");
       console.log("hotelService getHotels finished, returning data");
       //console.log(response.data);
-      return response.data;
+      const hotels = response.data
+      
+      return hotels;
     } catch (error) {
       return [];
     }

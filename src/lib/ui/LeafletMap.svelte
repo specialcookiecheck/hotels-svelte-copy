@@ -3,12 +3,16 @@
     import { onMount } from "svelte";
     import type { Control, Map as LeafletMap } from "leaflet";
     import L from "leaflet";
+
+   
   
     import { browser } from "$app/environment";
   
     export let id: string;
+    export let official5Ratings = [];
     export let height = 80;
     export let zoomLevel: number;
+    export let weather: any;
     export let activeLayer: string;
     if (id === "map2") {
       activeLayer = "Satellite"
@@ -28,6 +32,9 @@
     onMount(async () => {
       if (browser) {
           const leaflet = await import("leaflet");
+          console.log(official5Ratings);
+          //const official5RatingsLayer = L.layerGroup(official5Ratings);
+          //overlays = {"official5RatingsLayer": official5RatingsLayer}
           baseLayers = {
             Terrain: leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
               maxZoom: 19,
@@ -54,7 +61,7 @@
   
     export async function addMarker(hotel) {
       const leaflet = await import("leaflet");
-      const popupText = `<b>${hotel.name}</b><br>${hotel.houseNumber} ${hotel.street}<br>${hotel.city}<br>${hotel.country}<br>${hotel.postcode}<br>Official: ${hotel.starRating} Review: ${hotel.reviewRating}<br><img src=\"${hotel.imageURL}\" width=\"50px\"><br><a href=\"/hotellist/${hotel.hotelListid}\">Open hotel list</a>`
+      const popupText = `<b>${hotel.name}</b><br>${hotel.houseNumber} ${hotel.street}<br>${hotel.city}<br>${hotel.country}<br>${hotel.postcode}<br>Official: ${hotel.starRating} Review: ${hotel.reviewRating}<br><br><br>Weather (now): ${hotel.weatherDescription} <img src=\"${hotel.weatherIconUrl}\"><br><img src=\"${hotel.imageURL}\" width=\"50px\"><br><a href=\"/hotellist/${hotel.hotelListid}\">Open hotel list</a>`
 
       icon = L.icon({
 				iconUrl: "https://cdn.iconscout.com/icon/free/png-256/free-hotel-512-453740.png",
@@ -65,13 +72,20 @@
           title: `${hotel.name}`,
           riseOnHover: true,
           icon: icon,
-      } 
+      }
       
       const marker = leaflet.marker([hotel.latitude, hotel.longitude], iconOptions);
       marker.addTo(map);
       const popup = leaflet.popup({ autoClose: false, closeOnClick: false });
       popup.setContent(popupText);
-      marker.bindPopup(popup);
+
+      if (hotel.starRating != undefined && hotel.starRating === 5) {
+        console.log("attempting 5 star rating add");
+        official5Ratings.push(marker.bindPopup(popup));
+        console.log("official5Ratings", official5Ratings)
+      }
+
+      return marker.bindPopup(popup);
     }
 
     

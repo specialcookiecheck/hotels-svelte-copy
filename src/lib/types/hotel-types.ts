@@ -37,8 +37,10 @@ state: string;
 street: string;
 lat: number;
 lng: number;
-starRating: number;
-reviewRating: number;
+starRating: string;
+reviewRating: string;
+weatherIconUrl: string;
+weatherDescription: string;
 //candidate: Candidate | string;
 //donor: User | string;
 }
@@ -49,6 +51,6 @@ export interface AddedHotel {
   country: string;
   latitude: string;
   longitude: string;
-  starRating: number;
-  reviewRating: number;
+  starRating: string;
+  reviewRating: string;
   }
