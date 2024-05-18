@@ -31,6 +31,8 @@ export const actions = {
           country: form.get("country") as string,
           latitude: form.get("latitude") as string,
           longitude: form.get("longitude") as string,
+          starRating: form.get("starRating") as number,
+          reviewRating: form.get("reviewRating") as number,
         }
         hotelService.addHotel(session, hotelListId, hotel);
         //latestHotel.set(hotel);

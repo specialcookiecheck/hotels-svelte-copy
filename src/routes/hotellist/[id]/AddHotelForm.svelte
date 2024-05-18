@@ -57,10 +57,16 @@
         <input class="input" type="text" placeholder="Enter hotel country" name="country">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter Hotel latitude" name="latitude">
+        <input class="input" type="number" placeholder="Enter Hotel latitude" name="latitude">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter Hotel longitude" name="longitude">
+        <input class="input" type="number" placeholder="Enter Hotel longitude" name="longitude">
+      </div>
+      <div class="field">
+        <input class="input" type="number" placeholder="Enter Hotel official stars" name="starRating">
+      </div>
+      <div class="field">
+        <input class="input" type="number" placeholder="Enter your review stars" name="reviewRating">
       </div>
       {#if admin}
       <div class="field">

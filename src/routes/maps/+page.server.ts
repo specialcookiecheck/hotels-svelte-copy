@@ -1,5 +1,4 @@
 import type { PageServerLoad } from "./$types";
-import type { Session } from "$lib/types/hotel-types";
 import { hotelService } from "$lib/services/hotel-service";
 
 export const load: PageServerLoad = async ({ parent }) => {
