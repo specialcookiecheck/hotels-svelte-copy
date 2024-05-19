@@ -11,16 +11,31 @@ export const load: PageServerLoad = async ({ params, parent }) => {
   if (session) {
     console.log("session:", session);
     console.log("returning hotelList");
-    const hotel = await hotelService.getHotel(session, "cb1a9040-7eca-4a77-ba2b-c7502194dc52") //params.id),
+    const hotel = await hotelService.getHotel(session, params.id);
     const weatherReturn = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${hotel.latitude}&lon=${hotel.longitude}&APPID=${WEATHER_API_KEY}`);
         //https://api.openweathermap.org/data/2.5/onecall?lat=${station.latitude}&lon=${station.longitude}&appid=${openWeatherApiKey}&units=metric`
         //console.log("weather", weatherReturn.data);
     hotel.weatherDescription = weatherReturn.data.weather[0].description;
     hotel.weatherIconUrl = `<img src="https://openweathermap.org/img/wn/${weatherReturn.data.weather[0].icon}.png">`;
     console.log(hotel);
+    /*
+    const hotelImages = []
+    hotel.imageUrlArray.forEach(object => {
+      console.log("object:", object)
+      console.log("Object.values:", Object.keys(object))
+      hotelImages.push(Object.keys(object))
+    });
+    */
+    /*
+    Object.keys(hotel.imageUrlArray).forEach(([index, imageUrl]) =>
+      hotelImages.push(imageUrl);
+    )
+    */
+    //console.log("hotelImages", hotelImages);
     return {
         //hotelList: await hotelListService.getHotelList(session, params.id),
         hotel: hotel,
+        //hotelImages: hotelImages,
     };
   }
 }
@@ -33,11 +48,31 @@ export const actions = {
       const session = JSON.parse(cookieStr) as Session;
       if (session) {
         const form = await request.formData();
+        const hotelId = form.get("hotelId") as string;
+        const imageUrl = form.get("imageUrl") as string
+        /*
         const hotelImage = {
           imageUrl: form.get("imageUrl") as string,
           hotelId: form.get("hotelId") as string,
         }
-        hotelService.addHotelImage(session, hotelImage.imageUrl, hotelImage.hotelId);
+        */
+        hotelService.addHotelImage(session, imageUrl, hotelId);
+      }
+    } else {
+      console.log("no session cookie");
+    }
+  },
+
+  deleteImage: async ({ request, cookies }) => {
+    console.log("deleteImage action started");
+    const cookieStr = cookies.get("hotel-user") as string;
+    if (cookieStr) {
+      const session = JSON.parse(cookieStr) as Session;
+      if (session) {
+        const form = await request.formData();
+        const hotelId = form.get("hotelId") as string;
+        const imageUrl = form.get("imageUrl") as string
+        hotelService.deleteImage(session, hotelId, imageUrl);
       }
     } else {
       console.log("no session cookie");

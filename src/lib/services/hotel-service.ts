@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Session, Hotel, AddedHotel, HotelImage } from "$lib/types/hotel-types";
+import type { Session, Hotel, AddedHotel } from "$lib/types/hotel-types";
 
 
 export const hotelService = {
@@ -49,6 +49,22 @@ export const hotelService = {
     }
   },
 
+  async updateHotel(session: Session, hotelId: string, hotel: AddedHotel) {
+    try {
+      console.log("hotelService updateHotel started");
+      axios.defaults.headers.common["Authorization"] = "Bearer " + session.token;
+      const toBeAddedUrl = `/api/hotels/${hotelId}`;
+      console.log("toBeAddedUrl:", toBeAddedUrl);
+      console.log("hotel", hotel);
+      const response = await axios.post(this.baseUrl + toBeAddedUrl, hotel);
+      console.log("hotel added:", response.data)
+      return response.status == 200;
+    } catch (error) {
+      console.log(error.message);
+      return false;
+    }
+  },
+
   async addHotelImage(session: Session, hotelImage: string, hotelId: string) {
     try {
       console.log("hotelService addHotelImage started");
@@ -56,7 +72,7 @@ export const hotelService = {
       const toBeAddedUrl = `/api/hotels/${hotelId}/addImage`;
       console.log("toBeAddedUrl:", toBeAddedUrl);
       console.log("hotelId", hotelId);
-      const response = await axios.post(this.baseUrl + toBeAddedUrl, hotelImage);
+      const response = await axios.post(this.baseUrl + toBeAddedUrl, { hotelImage: hotelImage });
       console.log("hotelImage added:", response.data)
       return response.status == 200;
     } catch (error) {
@@ -74,6 +90,21 @@ export const hotelService = {
       const response = await axios.delete(this.baseUrl + deletedUrl);
       console.log(`hotel ${hotelId} deleted`);
       return response.status == 200;
+    } catch (error) {
+      console.log(error.message);
+      return false;
+    }
+  },
+
+  async deleteImage(session: Session, hotelId: string, imageUrl: string) {
+    try {
+      console.log("hotelService deleteImage started");
+      const hotel = await hotelService.getHotel(session, hotelId);
+      const deleteImageIndex = hotel.imageUrlArray.indexOf(imageUrl);
+      hotel.imageUrlArray.splice(deleteImageIndex, 1);
+      await hotelService.updateHotel(session, hotelId, hotel)
+      return "image deleted";
+      //return status == 200;
     } catch (error) {
       console.log(error.message);
       return false;
