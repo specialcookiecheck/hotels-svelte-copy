@@ -3,7 +3,7 @@ import type { Session, Hotel, AddedHotel } from "$lib/types/hotel-types";
 
 
 export const hotelService = {
-  baseUrl: "http://localhost:3000", // Live Render URL: "http://hotels-copy.onrender.com" localhost UIRL: "http://localhost:3000"
+  baseUrl: "http://hotels-copy.onrender.com", // Live Render URL: "http://hotels-copy.onrender.com" localhost UIRL: "http://localhost:3000"
 
   async getHotels(session: Session): Promise<Hotel[]> {
     console.log("hotelService getHotels started");

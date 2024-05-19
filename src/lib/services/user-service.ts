@@ -2,7 +2,7 @@ import axios from "axios";
 import type { Session, User } from "$lib/types/hotel-types";
 
 export const userService = {
-  baseUrl: "http://localhost:3000", // Live Render URL: "http://hotels-copy.onrender.com" localhost UIRL: "http://localhost:3000"
+  baseUrl: "http://hotels-copy.onrender.com", // Live Render URL: "http://hotels-copy.onrender.com" localhost UIRL: "http://localhost:3000"
 
   async signup(user: User): Promise<boolean> {
     try {

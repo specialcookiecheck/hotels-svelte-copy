@@ -2,7 +2,7 @@ import axios from "axios";
 import type { Session, HotelList, Hotel, AddedHotelList} from "$lib/types/hotel-types";
 
 export const hotelListService = {
-  baseUrl: "http://localhost:3000", // Live Render URL: "http://hotels-copy.onrender.com" localhost UIRL: "http://localhost:3000"
+  baseUrl: "http://hotels-copy.onrender.com", // Live Render URL: "http://hotels-copy.onrender.com" localhost UIRL: "http://localhost:3000"
   
   async getHotelLists(session: Session): Promise<HotelList[]> {
     console.log("getHotelLists started");
