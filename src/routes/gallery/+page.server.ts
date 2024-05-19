@@ -1,8 +1,9 @@
 import type { PageServerLoad } from "./$types";
-import type { Hotel } from "$lib/types/hotel-types";
+import type { Session } from "$lib/types/hotel-types";
 import { hotelService } from "$lib/services/hotel-service";
-import { WEATHER_API_KEY } from '$env/static/private';
-import axios from "axios";
+import { subTitle } from "$lib/stores";
+    
+subTitle.set("Gallery");
 
 export const load: PageServerLoad = async ({ parent }) => {
     const { session } = await parent();
@@ -26,3 +27,21 @@ export const load: PageServerLoad = async ({ parent }) => {
     };
   }
 };
+
+export const actions = {
+  deleteImage: async ({ request, cookies }) => {
+    console.log("deleteImage action started");
+    const cookieStr = cookies.get("hotel-user") as string;
+    if (cookieStr) {
+      const session = JSON.parse(cookieStr) as Session;
+      if (session) {
+        const form = await request.formData();
+        const hotelId = form.get("hotelId") as string;
+        const imageUrl = form.get("imageUrl") as string
+        await hotelService.deleteImage(session, hotelId, imageUrl);
+      }
+    } else {
+      console.log("no session cookie");
+    }
+  },
+}

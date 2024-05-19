@@ -1,5 +1,4 @@
 import type { PageServerLoad } from "./$types";
-import type { Hotel } from "$lib/types/hotel-types";
 import { hotelService } from "$lib/services/hotel-service";
 import { WEATHER_API_KEY } from '$env/static/private';
 import axios from "axios";

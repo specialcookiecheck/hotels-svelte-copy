@@ -40,6 +40,10 @@ reviewRating: string;
 weatherIconUrl: string;
 weatherDescription: string;
 imageUrlArray: Array<string>;
+lastOpenWeatherLabelArray;
+lastOpenWeatherTempTrendArray;
+lastOpenWeatherWindTrendArray;
+lastOpenWeatherPressureTrendArray;
 //candidate: Candidate | string;
 //donor: User | string;
 }

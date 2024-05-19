@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { hotelListService } from "$lib/services/hotelList-service";
 
     export let imageArray = [];
     export let hotelId = String;
@@ -7,14 +6,7 @@
 
     export let displayDeleteIcon = false;
 
-    export function toggleDeleteIcon() {
-        if (displayDeleteIcon === false) {
-            displayDeleteIcon = true;
-        }
-    }
 </script>
-
-<h1>{imageArray}</h1>
 
 {#each imageArray as image}
     <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -27,9 +19,10 @@
             console.log("not on image div");
             displayDeleteIcon = false;
         }}>
-        <h2>{hotelId}, {hotelName}</h2>
-        <img src={image} alt="hotel">
-
+        <div style="text-align: center;">
+            <img src={image} alt="hotel">
+        </div>
+        
         {#if displayDeleteIcon }
         <div id="deleteImage" style="float: left; position: absolute; max-width: 100%; top: 50%; left: 50%;">
             <form action="?/deleteImage" method="POST" class="ui icon button">

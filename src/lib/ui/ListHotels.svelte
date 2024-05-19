@@ -1,11 +1,10 @@
 <script lang="ts">
     import type { Hotel, HotelList } from "$lib/types/hotel-types";
-    import { hotelService } from "$lib/services/hotel-service";
     import DeleteHotelForm from "../../routes/hotellist/[id]/DeleteHotelForm.svelte";
-    import HotelsMap from "../../routes/dashboard/HotelsMap.svelte";
+    //import HotelsMap from "../../routes/dashboard/HotelsMap.svelte";
 
     export let hotels: Hotel[];
-    export let hotelList: HotelList;
+    export let hotelList: HotelList[];
 </script>
 
 <table class="table is-fullwidth">
@@ -14,10 +13,12 @@
         <th>Hotel name</th>
         <th>City</th>
         <th>Country</th>
-  
-        <!--{#unless @root.admin}-->
+        <th>Latitude, Longitude</th>
+        <th>Open Hotel</th>
+        <th>Delete Hotel</th>
+        <!--{#unless @root.admin}
         <td></td>
-        <!--{/unless}-->
+        {/unless}-->
   <!--
         {#if @root.admin}
         <th>hotelId</td>
@@ -89,17 +90,16 @@
               {hotel.country}
             </td>
             <td>
-              <a href="/hotel/{hotel._id}" class="button">
-                <span class="icon is-small">
-                  <i class="fas fa-folder-open"></i>
-                </span>
-              </a>
+              Lat: {hotel.latitude}, Lng: {hotel.longitude}
             </td>
             <td>
-              <a href="/hotellist/{hotel.hotelListid}/deletehotel/{hotel._id}" class="ui icon button">
-                <i class="fas fa-trash"></i>
-              </a>
-            </td>
+              <button class="button">
+                <a href="/hotellist/{hotel.hotelListid}/hotel/{hotel._id}" >
+                  <span class="icon is-small">
+                    <i class="fas fa-folder-open"></i>
+                  </span>
+                </a>
+              </button>
             <td>
               <DeleteHotelForm hotel={hotel} />
             </td>

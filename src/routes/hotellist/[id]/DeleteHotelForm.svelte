@@ -7,5 +7,5 @@
 
 <form action="?/deleteHotel" method="POST" class="ui icon button">
     <input type="hidden" name="hotelId" value="{hotel._id}"/>
-    <button class="button"><i class="fas fa-trash"></i></button>
+    <button class="button is-danger"><i class="fas fa-trash"></i></button>
 </form>

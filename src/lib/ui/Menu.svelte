@@ -35,9 +35,9 @@
         <div class="buttons">
           <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
           <a id="about" class="button" href="/about"> About </a>
-          <a id="maps" class="button" href="/maps"> Maps </a>
+          <a id="maps" class="button" href="/maps"> All Hotels Mapped </a>
           <a id="gallery" class="button" href="/gallery"> Gallery </a>
-          <a id="account" class="button" href="/account/{$currentSession._id}"> Account</a>
+          <!--<a id="account" class="button" href="/account/{$currentSession._id}"> Account</a>-->
           <a data-sveltekit-preload-data="tap" id="logout" class="button" href="/logout"> Logout {$currentSession.name} </a>
         </div>
       </div>

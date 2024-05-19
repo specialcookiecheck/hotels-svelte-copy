@@ -10,7 +10,7 @@
     <div class="field is-horizontal">
       <div class="field-body">
         <div class="field">
-          <label class="label" for="imageUrl">Image URL</label> <input class="input" type="text" placeholder="Enter hotel image URL" name="imageUrl" autofocus>
+          <label class="label" for="imageUrl">Image URL</label> <input class="input" type="text" placeholder="Enter hotel image URL" name="imageUrl">
         </div>
         {#if admin}
         <div class="field">

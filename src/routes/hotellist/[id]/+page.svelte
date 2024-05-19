@@ -4,10 +4,13 @@
     import ListHotelLists from "$lib/ui/ListHotelLists.svelte";
     import ListHotels from "$lib/ui/ListHotels.svelte";
     import AddHotelForm from "./AddHotelForm.svelte";
-
+    import { subTitle } from "$lib/stores";
+    
+    export let data: any;
+    subTitle.set(data.hotelList.title);
     
 
-    export let data: any;
+    
 </script>
 
 <section class="section">

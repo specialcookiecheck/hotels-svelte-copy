@@ -1,3 +1,9 @@
+<script lang="ts">
+  import { subTitle } from "$lib/stores";
+
+  subTitle.set("About");    
+</script>
+
 <section class="hero">
     <div class="hero-body has-text-centered">
       <p class="title ">

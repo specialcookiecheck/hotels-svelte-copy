@@ -7,7 +7,7 @@
     import { currentSession, subTitle } from "$lib/stores";
   
 
-    subTitle.set("Hotels!");
+    subTitle.set("Maps");
 
     export let data: any;
     

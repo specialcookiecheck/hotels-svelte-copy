@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { User, HotelList, Hotel } from "$lib/types/hotel-types";
+    import type { HotelList } from "$lib/types/hotel-types";
 
     export let hotelList: HotelList;
     let admin = false;
@@ -48,25 +48,25 @@
   <div class="field is-horizontal">
     <div class="field-body">
       <div class="field">
-        <input class="input" type="text" placeholder="Enter hotel name" name="name" autofocus>
+        <input class="input" type="text" placeholder="Hotel Name" name="name" size="15">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter hotel city" name="city">
+        <input class="input" type="text" placeholder="City" name="city" size="15">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter hotel country" name="country">
+        <input class="input" type="text" placeholder="Country" name="country" size="15">
       </div>
       <div class="field">
-        <input class="input" type="number" placeholder="Enter Hotel latitude" name="latitude">
+        <input class="input" type="number" step="0.1" placeholder="Latitude" name="latitude" style="width: 130px">
       </div>
       <div class="field">
-        <input class="input" type="number" placeholder="Enter Hotel longitude" name="longitude">
+        <input class="input" type="number" step="0.1" placeholder="Longitude" name="longitude" style="width: 130px">
       </div>
       <div class="field">
-        <input class="input" type="number" placeholder="Enter Hotel official stars" name="starRating">
+        <input class="input" type="number" step="1" min="1" max="5" placeholder="Official stars" name="starRating" style="width: 130px">
       </div>
       <div class="field">
-        <input class="input" type="number" placeholder="Enter your review stars" name="reviewRating">
+        <input class="input" type="number" step="1" min="1" max="5" placeholder="Review stars" name="reviewRating" style="width: 130px">
       </div>
       {#if admin}
       <div class="field">
