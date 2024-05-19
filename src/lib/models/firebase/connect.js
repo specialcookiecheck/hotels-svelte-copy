@@ -1,5 +1,5 @@
 import pkg from "firebase-admin";
-import serviceAccount from "../../../../serviceaccount.json" assert { type: "json" }; // necessary to make Firebase work
+//import serviceAccount from "../../../../serviceaccount.json" assert { type: "json" }; // necessary to make Firebase work
 //import { getAuth } from "firebase/auth";
 
 const admin = pkg;

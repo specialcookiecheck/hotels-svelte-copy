@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { connectAuthEmulator, getAuth } from 'firebase/auth';
+//import { connectAuthEmulator, getAuth } from 'firebase/auth';
 import type { FirebaseApp } from 'firebase/app';
 import type { Firestore } from 'firebase/firestore';
 import type { Auth } from 'firebase/auth';
@@ -22,13 +22,13 @@ export const initializeFirebase = () => {
  }
  if (!app) {
   app = initializeApp(firebaseConfig);
-  auth = getAuth(app);
+  //auth = getAuth(app);
 
   /*
   if (firebaseConfig.useEmulator) {
    connectAuthEmulator(auth, 'http://127.0.0.1:9099');
   }
   */
- 
+
  }
 };
