@@ -3,6 +3,7 @@
 
     export let imageArray = [];
     export let hotelId = String;
+    export let hotelName = String;
 
     export let displayDeleteIcon = false;
 
@@ -26,6 +27,7 @@
             console.log("not on image div");
             displayDeleteIcon = false;
         }}>
+        <h2>{hotelId}, {hotelName}</h2>
         <img src={image} alt="hotel">
 
         {#if displayDeleteIcon }
