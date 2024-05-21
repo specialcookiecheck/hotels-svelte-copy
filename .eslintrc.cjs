@@ -24,8 +24,9 @@ module.exports = {
 			files: ['*.svelte'],
 			parser: 'svelte-eslint-parser',
 			parserOptions: {
-				project: ["**/tsconfig.json"],
+				project: ["PROJECT_NAME/tsconfig.json"],
 				parser: '@typescript-eslint/parser',
+    			sourceType: "module",
 				tsconfigRootDir: __dirname
 			}
 		}
